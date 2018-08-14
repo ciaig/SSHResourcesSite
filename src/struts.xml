@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="hello" extends="struts-default"  strict-method-invocation="false">
+		<action name="index" class="index" method="showIndex">
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		<action name="index_content" class="index" method="showContent">
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		<action name="redirect_*" class="redirect">
+			<result name="success">/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+		<action name="user_registe" class="user" method="registe">
+			<result name="success">/WEB-INF/jsp/registe_success.jsp</result>
+			<result name="error">/WEB-INF/jsp/registe_failed.jsp</result>
+		</action>
+		<action name="user_loginUser" class="user" method="loginUser">
+			<result name="success">/WEB-INF/jsp/login_success.jsp</result>
+			<result name="error">/WEB-INF/jsp/login_failed.jsp</result>
+		</action>
+		<action name="user_quit" class="user" method="quit">
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="content" class="content">
+			<result name="picture" type="redirectAction">
+				<param name="actionName">content_picture</param>
+			</result>
+			<result name="video" type="redirectAction">
+				<param name="actionName">content_video</param>
+			</result>
+			<result name="music" type="redirectAction">
+				<param name="actionName">content_music</param>
+			</result>
+			<result name="other" type="redirectAction">
+				<param name="actionName">content_other</param>
+			</result>
+		</action>
+		<action name="content_*" class="content" method="{1}">
+			<result name="success">/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+	</package>
+</struts>
